@@ -35,12 +35,17 @@ export default function App(){
       <>
         <Nav setQuery = {setQuery} query={query} submit={searchBooks}/>
         <Routes>
-            <Route exact path="/">
-                <Library />
-            </Route>
-            <Route exact path="/results">
-             <SearchResults query={query} bookSearch={bookSearch}/>
-            </Route>
+            <Route  
+                exact path="/" 
+                element={<Library/>}
+                />
+               
+            <Route  
+                path="/results" 
+                element={<SearchResults query={query} bookSearch={bookSearch}/>} 
+                />
+             
+           
         </Routes>
         
         
