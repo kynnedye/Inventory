@@ -12,12 +12,13 @@ import {Routes, Route, useNavigate} from "react-router-dom"
 export default function App(){
     const [query, setQuery] = useState("")
     const [bookSearch, setBookSearch] = useState([])
-    let navigate = useNavigate()
+   
+   
 
     let url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyBTm3nxpXVcbzjgCRH-uoImiVKa951GZ9U`
 
     useEffect(()=>{
-        const searchBooks = (e)=>{
+        const searchBooks = ()=>{
            
             
             try{
@@ -34,6 +35,9 @@ export default function App(){
         if(query){
             searchBooks()
         }
+        console.log(query)
+
+        
 
     },[query])
     
@@ -43,7 +47,7 @@ export default function App(){
 
   return(
       <>
-        <Nav setQuery = {setQuery} query={query} />
+        <Nav setQuery = {setQuery} query={query}  />
         <Routes>
             <Route  
                 exact path="/" 
