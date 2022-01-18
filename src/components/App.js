@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import "../App.css"
 import Nav from "./Nav"
 import Library from "./Library"
 import SearchResults from "./SearchResults"
@@ -15,27 +16,34 @@ export default function App(){
 
     let url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyBTm3nxpXVcbzjgCRH-uoImiVKa951GZ9U`
 
-    const searchBooks = (e)=>{
-        e.preventDefault()
-        navigate("/results")
-        try{
-            fetch(url)
-                .then(res => res.json())
-                .then(data =>{
-                    setBookSearch(data)
-                })
-
-        } catch(err){
-            console.log(err)
+    useEffect(()=>{
+        const searchBooks = (e)=>{
+           
+            
+            try{
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data =>{
+                        setBookSearch(data)
+                    })
+    
+            } catch(err){
+                console.log(err)
+            }
         }
-    }
+        if(query){
+            searchBooks()
+        }
+
+    },[query])
+    
    
    
 
 
   return(
       <>
-        <Nav setQuery = {setQuery} query={query} submit={searchBooks}/>
+        <Nav setQuery = {setQuery} query={query} />
         <Routes>
             <Route  
                 exact path="/" 
