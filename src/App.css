@@ -41,5 +41,5 @@ img{
 .img-container:hover .overlay{
     visibility: visible;
     opacity: 1;
-    overflow: hidden;
+    overflow: scroll;
   }

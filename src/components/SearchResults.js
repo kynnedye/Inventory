@@ -4,6 +4,9 @@ import noImg from "../images/No-image.png"
 
 export default function SearchResults({query, bookSearch}) {
     console.log(bookSearch)
+        let handleClick = (e)=>{
+            console.log(e.target)
+        }
     
     
         let searchList = bookSearch.map( book => {
@@ -21,7 +24,7 @@ export default function SearchResults({query, bookSearch}) {
                     <div className="overlay">
                         <h3>Summary:</h3>
                         <p>{book.volumeInfo.description}</p>
-                        <button className="add">Add to library</button>
+                        <button onClick={handleClick}className="add">Add to library</button>
 
                     </div>
                     </div>
