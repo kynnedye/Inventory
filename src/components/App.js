@@ -50,7 +50,7 @@ export default function App(){
         e.preventDefault()
         setSearch(query)
         navigate("/results")
-        console.log(localStorage)
+        setQuery("")
     
    }
    console.log(query)

@@ -7,3 +7,39 @@ img{
     background: rgb(230, 230, 230);
     padding: 1.5em;
 }
+.img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:#2196F3;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    margin: -.1em 0;
+    padding: 2em 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+       
+    
+}
+.img-container:hover .overlay{
+    visibility: visible;
+    opacity: 1;
+    overflow: hidden;
+  }
