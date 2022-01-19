@@ -3,6 +3,7 @@ import "../App.css"
 import Nav from "./Nav"
 import Library from "./Library"
 import SearchResults from "./SearchResults"
+import useLocalStorage from "../hooks/useLocalStorage"
 import {Routes, Route, useNavigate} from "react-router-dom"
 
 
@@ -11,43 +12,52 @@ import {Routes, Route, useNavigate} from "react-router-dom"
 
 export default function App(){
     const [query, setQuery] = useState("")
-    const [bookSearch, setBookSearch] = useState([])
+    const [search, setSearch] = useLocalStorage("search", "")
+    const [bookSearch, setBookSearch] = useLocalStorage("results",[])
+    const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
    
    
 
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyBTm3nxpXVcbzjgCRH-uoImiVKa951GZ9U`
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=AIzaSyBTm3nxpXVcbzjgCRH-uoImiVKa951GZ9U`
 
     useEffect(()=>{
         const searchBooks = ()=>{
-           
-            
             try{
-                fetch(url)
-                    .then(res => res.json())
-                    .then(data =>{
-                        setBookSearch(data)
-                    })
-    
-            } catch(err){
-                console.log(err)
+            
+                setIsLoading(true)
+                 fetch(url)
+                     .then(res => res.json())
+                     .then(data => setBookSearch(data.items))
+                 
+                setIsLoading(false)     
+             
+             
+            }catch(err){
+            console.log(err)
             }
         }
-        if(query){
-            searchBooks()
-        }
-        console.log(query)
+      
+      searchBooks()
+       
 
         
 
-    },[query])
+    },[search])
     
    
-   
-
+   let handleSubmit = (e)=>{
+        e.preventDefault()
+        setSearch(query)
+        navigate("/results")
+        console.log(localStorage)
+    
+   }
+   console.log(query)
 
   return(
       <>
-        <Nav setQuery = {setQuery} query={query}  />
+        <Nav setQuery = {setQuery} query={query} submit ={handleSubmit} />
         <Routes>
             <Route  
                 exact path="/" 
@@ -56,7 +66,7 @@ export default function App(){
                
             <Route  
                 path="/results" 
-                element={<SearchResults query={query} bookSearch={bookSearch}/>} 
+                element={isLoading ? "Loading" :<SearchResults query={search} bookSearch={bookSearch}/>} 
                 />
              
            

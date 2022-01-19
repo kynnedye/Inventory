@@ -3,15 +3,19 @@ import { Container } from 'react-bootstrap'
 
 export default function SearchResults({query, bookSearch}) {
     console.log(bookSearch)
-    let books = bookSearch.items
     
-        let searchList = books.map( book => {
+    
+        let searchList = bookSearch.map( book => {
             return(
-                <div className="d-flex flex-column w-50 justify-content-center mb-5">
+                <div className="d-flex flex-column w-50 justify-content-center mb-5 book-card">
                     <h2>{book.volumeInfo.title}</h2>
                     <p>{book.volumeInfo.authors}</p>
-                    <img  className="mx-auto" src={book.volumeInfo.imageLinks.thumbnail}/>
-                    
+                    <img src={
+                         book.volumeInfo.imageLinks === undefined
+                         ? ""
+                         : `${book.volumeInfo.imageLinks.thumbnail}`
+                    }
+                    />
                 </div>
                 
                     
