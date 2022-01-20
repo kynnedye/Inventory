@@ -67,7 +67,7 @@ export default function App(){
                
             <Route  
                 path="/results" 
-                element={isLoading ? "Loading" :<SearchResults query={search} bookSearch={bookSearch}/>} 
+                element={isLoading ? "Loading" :<SearchResults query={search} bookSearch={bookSearch} setLibrary={setBookLibrary} library={bookLibrary}/>} 
                 />
              
            

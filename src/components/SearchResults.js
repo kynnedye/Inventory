@@ -2,10 +2,13 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import noImg from "../images/No-image.png"
 
-export default function SearchResults({query, bookSearch}) {
+export default function SearchResults({query, bookSearch, setLibrary,library}) {
     console.log(bookSearch)
-        let handleClick = (e)=>{
-            console.log(e.target)
+        let addToLibrary = (id)=>{
+            let toLibrary = bookSearch.filter(book => book.id === id)
+            setLibrary(toLibrary)
+            console.log(library)
+
         }
     
     
@@ -24,7 +27,7 @@ export default function SearchResults({query, bookSearch}) {
                     <div className="overlay">
                         <h3>Summary:</h3>
                         <p>{book.volumeInfo.description}</p>
-                        <button onClick={handleClick}className="add">Add to library</button>
+                        <button onClick={()=> addToLibrary(book.id)}className="add">Add to library</button>
 
                     </div>
                     </div>
