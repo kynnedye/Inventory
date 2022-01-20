@@ -14,6 +14,7 @@ export default function App(){
     const [query, setQuery] = useState("")
     const [search, setSearch] = useLocalStorage("search", "")
     const [bookSearch, setBookSearch] = useLocalStorage("results",[])
+    const [bookLibrary, setBookLibrary] = useLocalStorage("library",[])
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
    
