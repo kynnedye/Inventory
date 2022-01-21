@@ -1,13 +1,16 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+import { Prev } from 'react-bootstrap/esm/PageItem'
 import noImg from "../images/No-image.png"
 
-export default function SearchResults({query, bookSearch, setLibrary,library}) {
-    console.log(bookSearch)
+export default function SearchResults({query, bookSearch, setLibrary,library, setAdd, add}) {
+    
         let addToLibrary = (id)=>{
             let toLibrary = bookSearch.filter(book => book.id === id)
-            setLibrary(toLibrary)
-            console.log(library)
+            
+            setLibrary(prev => [...prev, toLibrary])
+
+ 
 
         }
     

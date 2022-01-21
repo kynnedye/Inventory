@@ -40,6 +40,7 @@ export default function App(){
         }
       
       searchBooks()
+      
        
 
         
@@ -62,12 +63,18 @@ export default function App(){
         <Routes>
             <Route  
                 exact path="/" 
-                element={<Library/>}
+                element={<Library library={bookLibrary}/>}
                 />
                
             <Route  
                 path="/results" 
-                element={isLoading ? "Loading" :<SearchResults query={search} bookSearch={bookSearch} setLibrary={setBookLibrary} library={bookLibrary}/>} 
+                element={isLoading ? "Loading" :<SearchResults 
+                    query={search} 
+                    bookSearch={bookSearch} 
+                    setLibrary={setBookLibrary} 
+                    library={bookLibrary}
+                    
+                    />} 
                 />
              
            

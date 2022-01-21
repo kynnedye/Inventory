@@ -43,3 +43,30 @@ img{
     opacity: 1;
     overflow: scroll;
   }
+  .library{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
+      max-width: 1000px;
+      justify-content: space-between;
+      margin: 0 auto;
+      margin-top:4em;
+
+  }
+  .library-slot{
+      display: flex;
+      flex-direction: column;
+      width:20%;
+    
+  }
+  .book-title{
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 0;
+  }
+  small{
+      text-align: center;
+      
+  }

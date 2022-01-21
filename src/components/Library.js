@@ -1,24 +1,47 @@
 import React from 'react'
-import { Container, Col , Row } from 'react-bootstrap'
+
+import noImg from "../images/No-image.png"
 
 
-export default function Library() {
+export default function Library({library}) {
+  console.log(library)
+
+  // not working saying it cant map because variable is undefined
+
+  // let libraryDisplay = library.map(book =>{
+  //   return(
+      
+  //     <div className="library-slot">
+  //         <img src={
+  //                        book.volumeInfo.imageLinks === undefined
+  //                        ? `${noImg}`
+  //                        : `${book.volumeInfo.imageLinks.thumbnail}`
+  //                   }
+  //                   />
+  //         <p className="book-title">{book.volumeInfo.title}</p>
+  //         <small>by {book.volumeInfo.authors[0]}</small>
+  //     </div>
+  //     )
+      
+       
+  //   })  
+    // let display = ()=>{
+    //   if(library.length === 0){
+    //     return <p>You have no books in your library</p>
+    //   } else{
+    //     {libraryDisplay}
+    //   }
+    // }
+
     return (
         <>
          <h1 className="text-center text-white mb-4 bg-info border-bottom">Your Library </h1>
-        <Container className="w-100 text-center mt-5">
-           
-        <Row className="mb-5">
-          <Col>1 of 2</Col>
-          <Col>2 of 2</Col>
-          <Col>2 of 2</Col>
-        </Row>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col>2 of 3</Col>
-          <Col>3 of 3</Col>
-        </Row>
-      </Container>
+       
+       <div className="library">
+       {/* {display()} */}
+       
+       
+       </div>
       </>
     )
 }
