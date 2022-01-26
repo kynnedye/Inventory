@@ -6,9 +6,10 @@ import noImg from "../images/No-image.png"
 export default function SearchResults({query, bookSearch, setLibrary,library, setAdd, add}) {
     
         let addToLibrary = (id)=>{
-            let toLibrary = bookSearch.filter(book => book.id === id)
+            let filterLibrary = bookSearch.filter(book => book.id === id)
             
             setLibrary(prev => [...prev, toLibrary])
+            console.log(library)
 
  
 
