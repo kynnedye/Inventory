@@ -8,10 +8,8 @@ export default function SearchResults({query, bookSearch, setLibrary,library, se
         let addToLibrary = (id)=>{
             let filterLibrary = bookSearch.filter(book => book.id === id)
             
-            setLibrary(prev => [...prev, toLibrary])
-            console.log(library)
+            setLibrary(prev => [...prev, filterLibrary])
 
- 
 
         }
     
