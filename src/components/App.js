@@ -29,7 +29,7 @@ export default function App(){
                 setIsLoading(true)
                  fetch(url)
                      .then(res => res.json())
-                     .then(data => setBookSearch(data.items))
+                     .then(data => setBookSearch(data?.items || []))
                  
                 setIsLoading(false)     
              
@@ -55,7 +55,7 @@ export default function App(){
         setQuery("")
     
    }
-   console.log(query)
+  
 
   return(
       <>

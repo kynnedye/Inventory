@@ -3,14 +3,20 @@ import { Container } from 'react-bootstrap'
 import { Prev } from 'react-bootstrap/esm/PageItem'
 import noImg from "../images/No-image.png"
 
-export default function SearchResults({query, bookSearch, setLibrary,library, setAdd, add}) {
+export default function SearchResults({query, bookSearch, setLibrary,library}) {
     
-        let addToLibrary = (id)=>{
-            let filterLibrary = bookSearch.filter(book => book.id === id)
+        let addToLibrary = (book)=>{
+           
             
-            setLibrary(prev => [...prev, filterLibrary])
+            let newLibrary = [...library, book]
+           
+            console.log(newLibrary)
+            
+            setLibrary(newLibrary)
+            console.log(library)
+            
 
-
+           
         }
     
     
@@ -29,7 +35,7 @@ export default function SearchResults({query, bookSearch, setLibrary,library, se
                     <div className="overlay">
                         <h3>Summary:</h3>
                         <p>{book.volumeInfo.description}</p>
-                        <button onClick={()=> addToLibrary(book.id)}className="add">Add to library</button>
+                        <button onClick={()=> addToLibrary(book)} className="add">Add to library</button>
 
                     </div>
                     </div>
