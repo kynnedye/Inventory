@@ -15,6 +15,7 @@ export default function App(){
     const [search, setSearch] = useLocalStorage("search", "")
     const [bookSearch, setBookSearch] = useLocalStorage("results",[])
     const [bookLibrary, setBookLibrary] = useLocalStorage("library",[])
+    const [bookRead, setBookRead] = useLocalStorage("read",[])
     const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
    
@@ -41,11 +42,20 @@ export default function App(){
       
       searchBooks()
       
-       
-
         
 
     },[search])
+
+    // useEffect(()=>{
+    //     let readLibrary = library.map(book =>{
+    //       return {
+    //         ...book,
+    //         isRead:false
+    //       }
+    //     })
+    //     setBookRead(readLibrary)
+    //     console.log(bookRead)
+    //   },[bookLibrary])
     
    
    let handleSubmit = (e)=>{
@@ -63,7 +73,11 @@ export default function App(){
         <Routes>
             <Route  
                 exact path="/" 
-                element={<Library library={bookLibrary}/>}
+                element={<Library 
+                    read ={bookRead} 
+                    setRead={setBookRead} 
+                    setLibrary= {setBookLibrary}
+                    library={bookLibrary}/>}
                 />
                
             <Route  

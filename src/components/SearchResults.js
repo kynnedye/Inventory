@@ -25,14 +25,14 @@ export default function SearchResults({query, bookSearch, setLibrary,library}) {
                 <div key ={book.id}className="d-flex flex-column w-50 justify-content-center mb-5 book-card">
                     <h2>{book.volumeInfo.title}</h2>
                     <p>{book.volumeInfo.authors}</p>
-                    <div className="img-container">
+                    <div className="img-container1">
                     <img src={
                          book.volumeInfo.imageLinks === undefined
                          ? `${noImg}`
                          : `${book.volumeInfo.imageLinks.thumbnail}`
                     }
                     />
-                    <div className="overlay">
+                    <div className="overlay1">
                         <h3>Summary:</h3>
                         <p>{book.volumeInfo.description}</p>
                         <button onClick={()=> addToLibrary(book)} className="add">Add to library</button>
