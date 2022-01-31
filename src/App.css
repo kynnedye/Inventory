@@ -77,6 +77,7 @@ img{
     opacity: 1;
     overflow: hidden;
 }
+
 .overlay{
     position: absolute;
 	background: rgba(0, 0, 0, 0.8);
@@ -93,8 +94,8 @@ img{
 }
 .remove{
     position: absolute;
-    top:10px;
-    right:8px;
+    top:0px;
+    right:0px;
     opacity: 0;
     font-size: 12px;
 }

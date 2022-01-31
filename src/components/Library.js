@@ -7,8 +7,7 @@ import noImg from "../images/No-image.png"
 export default function Library({setLibrary, library}) {
 // change if book is read or not
 
-
-let displayRead = (id) =>{
+const displayRead = (id) =>{
   let readArr = library.map(book =>{
     if(book.id === id){
       return {...book, isRead:true}
@@ -17,16 +16,24 @@ let displayRead = (id) =>{
   })
   setLibrary(readArr)
 }
+
+// remove book from library
+
+const removeBook = (id) =>{
+  setLibrary(prevBooks => prevBooks.filter(item => item.id !== id))
+}
  
   
-  let libraryDisplay = library.map(book =>{
+let libraryDisplay = library.map(book =>{
     return(
       
       <div className="library-slot" key ={book.id}>
           
         <div className="img-container" >
         {book.isRead ? <Badge bg="success" className="read">Read</Badge> : ""}
-        <Button className="remove" variant="danger">X</Button>
+        <Button className="remove" variant="danger" size="sm" onClick={()=>{
+          removeBook(book.id)
+        }}>X</Button>
           
         <img src={
                          book.volumeInfo.imageLinks === undefined
@@ -35,9 +42,9 @@ let displayRead = (id) =>{
                     }
                     />
           <div className="overlay d-flex flex-column align-items-center justify-content-center">
-          {book.isRead ? "" :  <Button className= "mb-3"variant="info" onClick={()=>displayRead(book.id)}>Finished?</Button> }
+          {book.isRead ? "" :  <Button className= "mb-3 btn"variant="info" size ="sm" onClick={()=>displayRead(book.id)}>Finished?</Button> }
          
-          <Button variant="light">More info..</Button> 
+          <Button variant="light"  size ="sm">More..</Button> 
           </div>          
         </div>
      

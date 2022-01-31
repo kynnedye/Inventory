@@ -84,6 +84,7 @@ export default function App(){
                 path="/results" 
                 element={isLoading ? "Loading" :<SearchResults 
                     query={search} 
+                    setBookSearch ={setBookSearch}
                     bookSearch={bookSearch} 
                     setLibrary={setBookLibrary} 
                     library={bookLibrary}

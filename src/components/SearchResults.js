@@ -1,21 +1,25 @@
+
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import { Prev } from 'react-bootstrap/esm/PageItem'
 import noImg from "../images/No-image.png"
 
-export default function SearchResults({query, bookSearch, setLibrary,library}) {
+export default function SearchResults({query, bookSearch, setLibrary,library, setBookSearch}) {
     
         let addToLibrary = (book)=>{
            
-            
+            // adds new book to library
             let newLibrary = [...library, book]
-           
-            console.log(newLibrary)
-            
             setLibrary(newLibrary)
-            console.log(library)
-            
-
+            // adds in library property to see if book is already in library
+           let updatedSearch = bookSearch.map( item =>{
+                if(item.id === book.id){
+                    return {...item, inLibrary:true}
+                }
+                return item
+            })
+            setBookSearch(updatedSearch)
+        
            
         }
     
@@ -35,7 +39,8 @@ export default function SearchResults({query, bookSearch, setLibrary,library}) {
                     <div className="overlay1">
                         <h3>Summary:</h3>
                         <p>{book.volumeInfo.description}</p>
-                        <button onClick={()=> addToLibrary(book)} className="add">Add to library</button>
+                        {book.inLibrary ? "" : <Button variant="light" onClick={()=> addToLibrary(book)} className="add">Add to library</Button>}
+                        
 
                     </div>
                     </div>
