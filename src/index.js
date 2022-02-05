@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter } from "react-router-dom";
+import { ContextProvider } from "./context/BookContext";
 import App from "./components/App";
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector("#root"));
+ReactDOM.render(
+    <ContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ContextProvider> 
+    ,document.querySelector("#root"));

@@ -1,16 +1,17 @@
 
-import React from 'react'
+import React, {useContext} from 'react'
 import { Container, Button } from 'react-bootstrap'
-import { Prev } from 'react-bootstrap/esm/PageItem'
+import { Context } from '../context/BookContext'
 import noImg from "../images/No-image.png"
 
-export default function SearchResults({query, bookSearch, setLibrary,library, setBookSearch}) {
+export default function SearchResults() {
+        const {search, bookSearch, setBookLibrary, bookLibrary, setBookSearch} = useContext(Context)    
     
         let addToLibrary = (book)=>{
            
             // adds new book to library
-            let newLibrary = [...library, book]
-            setLibrary(newLibrary)
+            let newLibrary = [...bookLibrary, book]
+            setBookLibrary(newLibrary)
             // adds in library property to see if book is already in library
            let updatedSearch = bookSearch.map( item =>{
                 if(item.id === book.id){
@@ -58,7 +59,7 @@ export default function SearchResults({query, bookSearch, setLibrary,library, se
    
     return (
        <Container className="d-flex flex-column mt-4 mb-4" >
-           <h4>Showing results for "{query}"</h4>
+           <h4>Showing results for "{search}"</h4>
            <div className="d-flex flex-column align-items-center mt-5">
             {searchList}
            </div>

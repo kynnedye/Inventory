@@ -1,16 +1,25 @@
-import React from 'react'
-import { Navbar, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React, {useContext} from 'react'
+import { Context } from '../context/BookContext'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function Nav({setQuery, query, submit}) {
-  
-   
-    
+
+export default function Nav() {
+
+    const navigate = useNavigate()
+    const {query, setQuery,setSearch} = useContext(Context)  
+
+    let handleSubmit = (e)=>{
+      e.preventDefault()
+      setSearch(query)
+      navigate("/results")
+      setQuery("")
+  }
+
     return (
       <nav  className="navbar navbar-light bg-light border-bottom p-5">
       <p className="navbar-brand">FindBooks📚</p>
       <Link to="/"><p className="navbar-text">My Library</p></Link>
-      <form onSubmit ={submit} className="form-inline d-flex justify-content-between w-50" >
+      <form onSubmit ={handleSubmit} className="form-inline d-flex justify-content-between w-50" >
         <input className="form-control" type="search" placeholder="Search" aria-label="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
         
          

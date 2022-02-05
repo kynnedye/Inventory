@@ -1,30 +1,41 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { Button, Badge } from 'react-bootstrap'
+import { Context } from '../context/BookContext'
 
 import noImg from "../images/No-image.png"
 
 
-export default function Library({setLibrary, library}) {
-// change if book is read or not
+export default function Library() {
+  const {setBookLibrary, bookLibrary} = useContext(Context)
+
+  // change if book is read or not
 
 const displayRead = (id) =>{
-  let readArr = library.map(book =>{
+  let readArr = bookLibrary.map(book =>{
     if(book.id === id){
       return {...book, isRead:true}
     }
     return book
   })
-  setLibrary(readArr)
+  setBookLibrary(readArr)
 }
 
 // remove book from library
 
 const removeBook = (id) =>{
-  setLibrary(prevBooks => prevBooks.filter(item => item.id !== id))
+  setBookLibrary(prevBooks => prevBooks.filter(item => item.id !== id))
 }
+
+// const renderPage = (book) =>{
+//   setPage(book)
+//      navigate("/description")
+     
+//   console.log(book)
+//  }
+
  
   
-let libraryDisplay = library.map(book =>{
+let libraryDisplay = bookLibrary.map(book =>{
     return(
       
       <div className="library-slot" key ={book.id}>
@@ -44,7 +55,7 @@ let libraryDisplay = library.map(book =>{
           <div className="overlay d-flex flex-column align-items-center justify-content-center">
           {book.isRead ? "" :  <Button className= "mb-3 btn"variant="info" size ="sm" onClick={()=>displayRead(book.id)}>Finished?</Button> }
          
-          <Button variant="light"  size ="sm">More..</Button> 
+          <Button variant="light"  size ="sm" onClick={()=> renderPage(book)}>More..</Button> 
           </div>          
         </div>
      
@@ -60,7 +71,7 @@ let libraryDisplay = library.map(book =>{
 
   
     let display = ()=>{
-      if(library.length === 0){
+      if(bookLibrary.length === 0){
         return <p className="text-center">You have no books in your library</p>
       } else{
         return libraryDisplay
