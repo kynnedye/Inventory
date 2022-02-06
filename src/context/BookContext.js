@@ -9,7 +9,7 @@ function ContextProvider({children}){
     const [bookSearch, setBookSearch] = useLocalStorage("results",[])
     const [descriptionPage, setDescriptionPage] = useLocalStorage("page",[])
     const [bookLibrary, setBookLibrary] = useLocalStorage("library",[])
-    const [bookRead, setBookRead] = useLocalStorage("read",[])
+    const [bookRead, setBookRead] = useLocalStorage("read",0)
 
    
    
@@ -39,6 +39,24 @@ function ContextProvider({children}){
 
     },[search])
 
+    const displayRead = (id) =>{
+        let readArr = bookLibrary.map(book =>{
+          if(book.id === id){
+            return {...book, isRead:true}
+          }
+          return book
+        })
+        setBookLibrary(readArr)
+        setBookRead(prev => prev + 1)
+    }
+
+      // remove book from library
+
+    const removeBook = (book) =>{
+        setBookLibrary(prevBooks => {prevBooks.filter(item => item.id !== book.id)})
+        
+    }
+
     
    
 
@@ -58,6 +76,8 @@ function ContextProvider({children}){
            setBookLibrary,
            bookRead,
            setBookRead,
+           displayRead,
+           removeBook
            
        }} >
             {children}

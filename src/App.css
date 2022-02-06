@@ -112,3 +112,37 @@ img{
       text-align: center;
       
   }
+  .progress{
+      width: 50%;
+      max-width: 800px;
+      margin-left: 2em;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    
+  }
+  .progress-container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgb(240, 240, 240);
+      padding: 1.5em;
+      border-radius: 4px;
+      width: 80%;
+      margin:0 auto;
+      
+  }
+  .progress-btn{
+      color: white;
+      font-weight: bold;
+  }
+  @media (max-width:800px) {
+      .progress-container{
+          flex-direction: column;
+          align-items: center;
+      }
+      .progress{
+          margin: 0;
+          width: 80%;
+      }
+  }

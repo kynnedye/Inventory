@@ -1,37 +1,15 @@
 import React, {useContext} from 'react'
 import { Button, Badge } from 'react-bootstrap'
 import { Context } from '../context/BookContext'
-
+import ReadingProgress from "./ReadingProgress"
 import noImg from "../images/No-image.png"
 
 
 export default function Library() {
-  const {setBookLibrary, bookLibrary} = useContext(Context)
+  const {bookLibrary, removeBook, displayRead} = useContext(Context)
 
-  // change if book is read or not
 
-const displayRead = (id) =>{
-  let readArr = bookLibrary.map(book =>{
-    if(book.id === id){
-      return {...book, isRead:true}
-    }
-    return book
-  })
-  setBookLibrary(readArr)
-}
 
-// remove book from library
-
-const removeBook = (id) =>{
-  setBookLibrary(prevBooks => prevBooks.filter(item => item.id !== id))
-}
-
-// const renderPage = (book) =>{
-//   setPage(book)
-//      navigate("/description")
-     
-//   console.log(book)
-//  }
 
  
   
@@ -43,7 +21,7 @@ let libraryDisplay = bookLibrary.map(book =>{
         <div className="img-container" >
         {book.isRead ? <Badge bg="success" className="read">Read</Badge> : ""}
         <Button className="remove" variant="danger" size="sm" onClick={()=>{
-          removeBook(book.id)
+          removeBook(book)
         }}>X</Button>
           
         <img src={
@@ -81,7 +59,8 @@ let libraryDisplay = bookLibrary.map(book =>{
     return (
         <>
          <h1 className="text-center text-white mb-4 bg-info border-bottom">Your Library </h1>
-       
+
+        <ReadingProgress />
        <div className="library">
        {display()}
        
