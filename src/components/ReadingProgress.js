@@ -16,11 +16,19 @@ export default function ReadingProgress() {
     const resetGoal = ()=>{
         setSavedGoal(0)
         setBookRead(0)
+        window.location.reload()
+    }
+    const checkIfComplete = () =>{
+        if(savedGoal === bookRead){
+            return <p>Good job you completed your goal!!🎉</p>
+        }else {
+            return <p>Reading goal :</p>
+        }
     }
 
     return (
         <div className="progress-container">
-            {savedGoal > 0 ? <p>Reading progress:</p> : <p>No reading goal set</p> }
+            {savedGoal > 0 ? checkIfComplete() : <p>No reading goal set</p> }
             
             <ProgressBar variant ="info"className="progress"now={ bookRatio} />
             <p>{bookRead}/{savedGoal}</p>

@@ -64,7 +64,7 @@ function ContextProvider({children}){
       return book
     })
     setBookLibrary(notReadArr)
-    if(savedGoal > 0){
+    if(savedGoal > 0 && bookRead > 0){
       setBookRead(prev => prev - 1)
     }
   }
