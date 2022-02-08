@@ -128,14 +128,24 @@ img{
       background: rgb(240, 240, 240);
       padding: 1.5em;
       border-radius: 4px;
-      width: 80%;
+      width: 90%;
       margin:0 auto;
       
   }
   .progress-btn{
       color: white;
       font-weight: bold;
+      margin-left: 1em;
+      margin-right: 1em;
+      font-size: .75rem;
   }
+  .reset{
+      font-size: .75rem;
+  }
+  .search{
+      margin-right:.5em;
+  }
+
   @media (max-width:800px) {
       .progress-container{
           flex-direction: column;
@@ -145,4 +155,23 @@ img{
           margin: 0;
           width: 80%;
       }
+      .reset{
+          margin-top: 1em;
+      }
+  }
+
+  @media (max-width:700px){
+      .library{
+          flex-direction: column;
+          align-items: center;
+          flex-wrap: nowrap;
+      }
+      .library-slot{
+          width: 40%;
+          margin-left: 0;
+      }
+      nav{
+          flex-direction: column;
+      }
+     
   }

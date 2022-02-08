@@ -1,23 +1,34 @@
 import React, {useContext} from 'react'
 import { Context } from '../context/BookContext'
 import { ProgressBar,Button } from 'react-bootstrap'
-import useLocalStorage from '../hooks/useLocalStorage'
+
 import GoalModal from './GoalModal'
 
 export default function ReadingProgress() {
-    const [numberOfBooks, setNumberOfBooks] = useLocalStorage("goal", 0)
-    const [savedGoal, setSavedGoal] = useLocalStorage("reading",0)
-    const {bookRead, bookLibrary} = useContext(Context)
+   
+    const {bookRead, setBookRead, setNumberOfBooks, numberOfBooks,savedGoal, setSavedGoal} = useContext(Context)
 
-    const bookAmount = bookLibrary.filter(book => book.isRead === true)
-    const bookRatio = ((bookAmount.length-1)/savedGoal) * 100
+   
+    const bookRatio = (bookRead/savedGoal) * 100
+
+    // resets the reading goal
+
+    const resetGoal = ()=>{
+        setSavedGoal(0)
+        setBookRead(0)
+    }
 
     return (
         <div className="progress-container">
-            <p>Reading progress:</p>
+            {savedGoal > 0 ? <p>Reading progress:</p> : <p>No reading goal set</p> }
+            
             <ProgressBar variant ="info"className="progress"now={ bookRatio} />
             <p>{bookRead}/{savedGoal}</p>
             <GoalModal setNumber ={setNumberOfBooks} number={numberOfBooks} saved={savedGoal} setSaved={setSavedGoal}/>
+           
+            {savedGoal > 0 ?    
+                 <Button className="reset"variant="danger" onClick={resetGoal}>Reset</Button>: ""
+                 }
 
         </div>
     )

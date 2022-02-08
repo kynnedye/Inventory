@@ -10,6 +10,8 @@ function ContextProvider({children}){
     const [descriptionPage, setDescriptionPage] = useLocalStorage("page",[])
     const [bookLibrary, setBookLibrary] = useLocalStorage("library",[])
     const [bookRead, setBookRead] = useLocalStorage("read",0)
+    const [numberOfBooks, setNumberOfBooks] = useLocalStorage("goal", 0)
+    const [savedGoal, setSavedGoal] = useLocalStorage("reading",0)
 
    
    
@@ -39,7 +41,8 @@ function ContextProvider({children}){
 
     },[search])
 
-    const displayRead = (id) =>{
+// displays a read badge on the top of the book
+ const displayRead = (id) =>{
         let readArr = bookLibrary.map(book =>{
           if(book.id === id){
             return {...book, isRead:true}
@@ -47,16 +50,34 @@ function ContextProvider({children}){
           return book
         })
         setBookLibrary(readArr)
-        setBookRead(prev => prev + 1)
+        if(savedGoal > 0){
+          setBookRead(prev => prev + 1)
+        }
+       
+}
+// turn the read badge off on the top of the book
+  const notRead = (id) => {
+    let notReadArr = bookLibrary.map(book =>{
+      if(book.id === id){
+        return {...book,isRead:false}
+      }
+      return book
+    })
+    setBookLibrary(notReadArr)
+    if(savedGoal > 0){
+      setBookRead(prev => prev - 1)
     }
+  }
 
-      // remove book from library
 
-    const removeBook = (book) =>{
-        setBookLibrary(prevBooks => {prevBooks.filter(item => item.id !== book.id)})
-        
-    }
+// remove book from library
 
+const removeBook = (id) =>{
+  setBookLibrary(prevBooks => prevBooks.filter(item => item.id !== id))
+  if(savedGoal > 0){
+    setBookRead(prev => prev - 1)
+  }      
+}
     
    
 
@@ -77,7 +98,12 @@ function ContextProvider({children}){
            bookRead,
            setBookRead,
            displayRead,
-           removeBook
+           removeBook,
+           setSavedGoal,
+           savedGoal,
+           numberOfBooks,
+           setNumberOfBooks,
+           notRead
            
        }} >
             {children}

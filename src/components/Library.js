@@ -6,7 +6,7 @@ import noImg from "../images/No-image.png"
 
 
 export default function Library() {
-  const {bookLibrary, removeBook, displayRead} = useContext(Context)
+  const {bookLibrary, removeBook, displayRead, notRead} = useContext(Context)
 
 
 
@@ -21,7 +21,7 @@ let libraryDisplay = bookLibrary.map(book =>{
         <div className="img-container" >
         {book.isRead ? <Badge bg="success" className="read">Read</Badge> : ""}
         <Button className="remove" variant="danger" size="sm" onClick={()=>{
-          removeBook(book)
+          removeBook(book.id)
         }}>X</Button>
           
         <img src={
@@ -31,7 +31,9 @@ let libraryDisplay = bookLibrary.map(book =>{
                     }
                     />
           <div className="overlay d-flex flex-column align-items-center justify-content-center">
-          {book.isRead ? "" :  <Button className= "mb-3 btn"variant="info" size ="sm" onClick={()=>displayRead(book.id)}>Finished?</Button> }
+          {book.isRead ?  
+              <Button className= "mb-3 btn"variant="info" size ="sm" onClick={()=>notRead(book.id)}>Not read?</Button> :  
+            <Button className= "mb-3 btn"variant="info" size ="sm" onClick={()=>displayRead(book.id)}>Finished?</Button> }
          
           <Button variant="light"  size ="sm" onClick={()=> renderPage(book)}>More..</Button> 
           </div>          

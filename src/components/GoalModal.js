@@ -34,10 +34,7 @@ export default function GoalModal({setNumber, number,  setSaved, saved}) {
                         type="number" 
                         min="0"></Form.Control>
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>How many days?</Form.Label>
-                    <Form.Control name="days"type="number"></Form.Control>
-                </Form.Group>
+                
             </Form>
         </Modal.Body>
         <Modal.Footer>
