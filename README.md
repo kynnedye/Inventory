@@ -3,3 +3,4 @@ Search for and save your favorite books to your library. I used local storage so
 # InventoryHub
 # InventoryHub
 # inventory
+# inventory
