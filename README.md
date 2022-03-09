@@ -1,6 +1,2 @@
-# GoodBooks
-Search for and save your favorite books to your library. I used local storage so you will be able to actually save your books on your local browser. I also created a reading goal tracker. Set however many books you want for your goal and as you switch the books to read in your library they will be tracked in the progress bar. Created using react and the google books api. https://kynnedye.github.io/GoodBooks/
-# InventoryHub
-# InventoryHub
 # inventory
-# inventory
+I created this app to help my husband keep inventory of all the beverage products at his work. Originally he was using paper and pen to keep track of everything, so we both came up with the idea to make him an app that helped with this process. With this inventory app you are able to input the item's name and the current count. Also you may input when the item used and everything is stored in firebase. You will also be able to log in so your information will be secure.
