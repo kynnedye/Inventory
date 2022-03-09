@@ -1,177 +1,112 @@
-img{
-    width:100%;
-    height: auto;
-    max-width: 400px;
-}
-.book-card{
-    background: rgb(230, 230, 230);
-    padding: 1.5em;
-}
-.img-container1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap');
 
-    position: relative;
-}
-
-.overlay1{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background:#2196F3;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    margin: -.1em 0;
-    padding: 2em 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body{
   
-    /* transition effect. not necessary */
-    transition: opacity .2s, visibility .2s;
-       
+    background: rgb(235, 235, 235);
+    font-family: Mukta, sans-serif;
+   
+}
+
+
+.login-card{
+    width:60%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+  
+}
+.lg-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+/* .navbar{
+    background: rgb(235, 235, 235);
+} */
+.btn{
+    margin-right: 1em;
+  
+}
+.inventory{
+    color: #a4bfef;
+}
+.accent{
+    background: cornflowerblue;
+}
+.light{
+     background: rgb(231, 231, 231);
+     color: cornflowerblue;
+}
+.inventory-container{
+    min-height: 40vh;
+    background:white;
+    max-width: 1000px;
+    margin:0 auto;
+    display: none;
+}
+.add-btn{
+    border: none;
+    background: cornflowerblue;
+    border-radius: 5px;
+    color: white;
+}
+.center{
+    text-align: center;
+}
+.table-btn{
+    border:none;
+   width: 100%;
+}
+.table-btn:hover{
+    background: rgba(100, 148, 237, 0.486);
+}
+.table{
+    text-align: center;
+}
+.toggle-container{
+    display: flex;
+    justify-content: space-between;
+}
+.page-box{
+    width: 60%;
+}
+@media (max-width: 600px){
+    .page-box{
+        width:90%;
+    }
+}
+.card-head{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+    padding-bottom: 1em;
     
 }
-.img-container1:hover .overlay1{
-    visibility: visible;
-    opacity: 1;
-    overflow: scroll;
-  }
-  .library{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      
-      width: 70%;
-      max-width: 1000px;
-      
-      margin: 0 auto;
-      margin-top:4em;
 
-  }
-  .library-slot{
-      display: flex;
-      flex-direction: column;
-      margin-left: 4em;
-      margin-bottom: 2em;
-      width:20%;
-     
-      transition: transform 0.2s;
+.title{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: transparent;
+}
+
+.count-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+.input-control{
+    display: flex;
+    width: 40%;
     
-  }
-.img-container{
-    position: relative;
-    transition: transform 0.2s;
 }
-.img-container:hover {
-	cursor: pointer;
-	transform: scale(1.1);
+.btn-margin{
+    margin-right: 0;
 }
-.img-container:hover .overlay{
-    opacity: 1;
-    overflow: hidden;
+.form-btns{
+    border-radius: 25px;
+    text-align: center;
+    width: 45px;
+    padding: 0 .95em;
+    font-size: .75rem;
 }
-
-.overlay{
-    position: absolute;
-	background: rgba(0, 0, 0, 0.8);
-	width: 100%;
-	transition: 0.5s ease;
-	opacity: 0;
-	bottom: 0;
-	font-size: 20px;
-	padding: 20px;
-	text-align: center;
-}
-.img-container:hover .remove{
-    opacity: 1;
-}
-.remove{
-    position: absolute;
-    top:0px;
-    right:0px;
-    opacity: 0;
-    font-size: 12px;
-}
-.read{
-    position: absolute;
-}
-
-  .book-title{
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 0;
-  }
-  small{
-      text-align: center;
-      
-  }
-  .progress{
-      width: 50%;
-      max-width: 800px;
-      margin-left: 2em;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    
-  }
-  .progress-container{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgb(240, 240, 240);
-      padding: 1.5em;
-      border-radius: 4px;
-      width: 90%;
-      margin:0 auto;
-      
-  }
-  .progress-btn{
-      color: white;
-      font-weight: bold;
-      margin-left: 1em;
-      margin-right: 1em;
-      font-size: .75rem;
-  }
-  .reset{
-      font-size: .75rem;
-  }
-  .search{
-      margin-right:.5em;
-  }
-
-  @media (max-width:800px) {
-      .progress-container{
-          flex-direction: column;
-          align-items: center;
-      }
-      .progress{
-          margin: 0;
-          width: 80%;
-      }
-      .reset{
-          margin-top: 1em;
-      }
-  }
-
-  @media (max-width:700px){
-      .library{
-          flex-direction: column;
-          align-items: center;
-          flex-wrap: nowrap;
-      }
-      .library-slot{
-          width: 40%;
-          margin-left: 0;
-      }
-      nav{
-          flex-direction: column;
-      }
-     
-  }

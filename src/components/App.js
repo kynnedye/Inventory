@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from "react"
 import "../App.css"
-import Nav from "./Nav"
-import Library from "./Library"
-import SearchResults from "./SearchResults"
-import BookPage from "./BookPage"
+import Navbar from "./Navbar"
+import Login from "./Login"
+import Inventory from "./Inventory"
+
+
 import {Routes, Route, useNavigate} from "react-router-dom"
-
-
 
 
 
@@ -17,21 +16,13 @@ export default function App(){
 
   return(
       <>
-        <Nav  />
+
+        <Navbar/>  
         <Routes>
-            <Route  
-                exact path="/" 
-                element={<Library />}
-                />
-               
-            <Route  
-                path="/results" 
-                element={<SearchResults />} 
-                />
-                <Route  
-                path="/description" 
-                element={<BookPage/>} 
-                />
+          <Route exact path="/" element={<Login/>}/>
+          <Route path="/inventory" element={<Inventory/>}/>
+        
+       
              
            
         </Routes>
