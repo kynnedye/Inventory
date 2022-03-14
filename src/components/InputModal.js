@@ -9,14 +9,14 @@ const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { item,setItem, setInventoryList, handleChange, inventoryList} = useContext(Context)
+  const { item,setItem,  handleChange, createList} = useContext(Context)
   const handleSubmit = () =>{
    
-    setInventoryList(prev => [...prev, item])
-    setItem({name:"", count:0, id: uuid()})
+    createList()
+    setItem({name:"", count:0})
     
     handleClose()
-    console.log(inventoryList.id)
+   
   }
   
 

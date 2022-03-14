@@ -1,6 +1,15 @@
 import React, {useState, useEffect} from "react"
 import useLocalStorage from "../hooks/useLocalStorage"
-import { v4 as uuid } from 'uuid';
+import { db } from "../firebase-config";
+
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore"
 
 
 const Context = React.createContext()
@@ -12,23 +21,61 @@ function ContextProvider({children}){
       count:0,
       used:0,
       wasted:0,
-      id:uuid()
+      
       
   })
-const [inventoryList, setInventoryList] = useLocalStorage("inventory",[])
+
 const [updatedName, setUpdatedName] = useState("")
 const [updatedCount, setUpdatedCount] = useState(0)
 const [usedAmount, setUsedAmount] = useState(0)
 const [wastedAmount, setWastedAmount] = useState(0)
+const [list, setList]= useState([])
+const [updatePage, setUpdatePage] = useState(true)
 
+const listRef = collection(db, "list")
 
-
-
-const addToInventory = () =>{
-  setInventoryList(prev => {
-    [...prev, item]
-  })
+const createList = async () =>{
+  await addDoc(listRef, {name:item.name, count:item.count, used:item.used, wasted: item.wasted})
+  setUpdatePage(prev => !prev)
 }
+const deleteListItem = async (id) =>{
+  const listDoc = doc(db ,"list", id)
+  await deleteDoc(listDoc)
+  setUpdatePage(prev => !prev)
+}
+const updateList = async (id, listDataName, updatedNum) => {
+  const listDoc  = doc(db, "list", id)
+  const newFields = { [listDataName]: updatedNum }
+  await updateDoc(listDoc, newFields)
+  setUpdatePage(prev => !prev)
+}
+
+
+useEffect(() => {
+    const getList = () =>{
+      try{
+            
+              
+        getDocs(listRef)
+            .then(data =>  setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+            
+        
+       
+    
+    
+   }catch(err){
+   console.log(err)
+   }
+    }
+
+  getList();
+}, [updatePage]);
+
+// const addToInventory = () =>{
+//   setInventoryList(prev => {
+//     [...prev, item]
+//   })
+// }
   
    
    
@@ -43,48 +90,39 @@ const addToInventory = () =>{
       })
       console.log(item)
     }
-    const handleUpdateChange = (e, id) =>{
-      const updatedArr = inventoryList.map(item =>{
-        if(item.id === id){
+    // const handleUpdateChange = (e, id) =>{
+    //   const updatedArr = inventoryList.map(item =>{
+    //     if(item.id === id){
          
-          return {
-            [e.target.name] : e.target.value
-          }
-        }
-        return item
-      })
-      setInventoryList(updatedArr)
-    }
+    //       return {
+    //         [e.target.name] : e.target.value
+    //       }
+    //     }
+    //     return item
+    //   })
+    //   setInventoryList(updatedArr)
+    // }
     
-    const removeItem = (id)=>{
-       setInventoryList(prevItems => prevItems.filter(list => list.id !== id))
-    }
+    // const removeItem = (id)=>{
+    //    setInventoryList(prevItems => prevItems.filter(list => list.id !== id))
+    // }
 
-    const handleChangeAmount = (e)=>{
-      setUpdatedCount(e.target.value)
-    }
-    const handleChangeName = (e)=>{
-      setUpdatedName(e.target.value)
-    }
-    const handleChangeUsed = (e)=>{
-      setUsedAmount(e.target.value)
-      console.log(usedAmount)
-    }
+
   
  
 
  
-   const updateAmount = ( id, name , amount) =>{
-    const updatedArr = inventoryList.map(item =>{
-      if(item.id === id){
-       return {...item, [name]: amount}
-         }
-         return item
-       })
+  //  const updateAmount = ( id, name , amount) =>{
+  //   const updatedArr = inventoryList.map(item =>{
+  //     if(item.id === id){
+  //      return {...item, [name]: amount}
+  //        }
+  //        return item
+  //      })
        
      
-     setInventoryList(updatedArr)
-   }
+  //    setInventoryList(updatedArr)
+  //  }
 
 
 
@@ -92,26 +130,22 @@ const addToInventory = () =>{
        < Context.Provider value={{
          item,
          setItem,
-         inventoryList,
-         setInventoryList,
          handleChange,
-         addToInventory,
-         removeItem,
-         updateAmount,
-         handleChangeAmount,
-         handleChangeName,
+         list,
+         setList,
+         deleteListItem,
          updatedCount,
          updatedName,
          setUpdatedName,
          setUpdatedCount,
-         
+         setUpdatePage,
          usedAmount,
          setUsedAmount,
          usedAmount,
-         handleChangeUsed,
+         createList,
          wastedAmount,
          setWastedAmount,
-         handleUpdateChange
+         updateList
          
        }} >
             {children}

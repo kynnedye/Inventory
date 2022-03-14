@@ -2,7 +2,8 @@ import React, {useContext} from 'react'
 import { Card, Container, Button } from 'react-bootstrap'
 import { Context } from '../context/AppContext'
 import InputModal from './InputModal'
-import Popup from './Popup'
+
+
 import DropDown from './DropDown'
 
 
@@ -10,9 +11,9 @@ import DropDown from './DropDown'
 
 export default function Inventory() {
     
-    const {inventoryList} = useContext(Context)
+    const {list} = useContext(Context)
 
-    const inventoryDisplay = inventoryList.map(item=>{
+    const inventoryDisplay = list.map(item=>{
         return (    
             <DropDown key={item.id} item={item}/>
         )
@@ -28,6 +29,7 @@ export default function Inventory() {
              </Card.Header>
          </Card>
            {inventoryDisplay}
+            
        </Container>
     )
 }

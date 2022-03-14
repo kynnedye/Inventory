@@ -12,9 +12,13 @@ export default function DropDown({item}) {
   const [clicked, setClicked] = useState({
       button1: false,
       button2: false,
-      button3:false
+      button3:false,
+      button4:false
+     
   })
-  const {removeItem, setUpdatedCount, setUpdatedName, setUsedAmount, updatedCount, usedAmount, wastedAmount, setWastedAmount  } = useContext(Context)
+  const [quantityLow, setQuantityLow] = useState(false)
+  
+  const {deleteListItem, setUpdatedCount, setUpdatedName, updatedName, setUsedAmount, updatedCount, usedAmount, wastedAmount, setWastedAmount  } = useContext(Context)
     function CustomToggle({ children, eventKey }) {
         const decoratedOnClick = useAccordionButton(eventKey, () =>
           console.log('totally custom!'),
@@ -32,14 +36,15 @@ export default function DropDown({item}) {
       }
 
       const closeIcon = () =>{
-        if(hover){
-            return <Button  
-                variant="danger" 
-                size="sm" 
-                onClick={()=> removeItem(item.id)}
-                className="danger">X</Button>
-        } else if(hover !== true){
-            return ""
+        if(hover !== true || clicked.button4 ){
+          return ""
+            
+        } else if(hover){
+          return <Button  
+          variant="danger" 
+          size="sm" 
+          onClick={()=> deleteListItem(item.id)}
+          className="danger">X</Button>
         }
     }
 
@@ -49,9 +54,12 @@ export default function DropDown({item}) {
         const used = parseInt(item.used)
         const count = parseInt(item.count)
         const wasted = parseInt(item.wasted)
-        let added = wasted + used
-        return count - added
-       
+        const added = wasted + used
+        const finalTotal = count - added
+        
+        return finalTotal
+
+      
       }
   
    
@@ -63,9 +71,19 @@ export default function DropDown({item}) {
           <Card.Header className="toggle-container">
             <div className="btn-container">
             {closeIcon()}
-            <Button variant="secondary">{item.name}</Button>
+            {clicked.button4 !== true ? <Button variant="secondary" onClick={()=> setClicked(prev =>{
+                  return {...prev, button4:true}
+                })}>{item.name}</Button> : 
+                <InputCount 
+                  setClicked ={setClicked}
+                  amount ={updatedName} 
+                  item={item} 
+                  inputName="name" 
+                  button="button4" 
+                  inputType="text"
+                  setFunction={setUpdatedName}/> }
             </div>
-          
+        
             <CustomToggle eventKey="0">{actualTotal()}</CustomToggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
@@ -81,6 +99,7 @@ export default function DropDown({item}) {
                   item={item} 
                   inputName="count" 
                   button="button1" 
+                  inputType="number"
                   setFunction={setUpdatedCount}/> }
                 
               </div>
@@ -95,6 +114,7 @@ export default function DropDown({item}) {
                     item={item} 
                     inputName="used" 
                     button="button2" 
+                    inputType="number"
                     setFunction={setUsedAmount}/>}
               </div>
               <div className="count-container">
@@ -108,6 +128,7 @@ export default function DropDown({item}) {
                     item={item} 
                     inputName="wasted" 
                     setFunction={setWastedAmount}
+                    inputType="number"
                     button="button3"/>}
               </div>
             </Card.Body>
