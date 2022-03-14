@@ -19,8 +19,8 @@ export default function App(){
 
         <Navbar/>  
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
-          <Route path="/inventory" element={<Inventory/>}/>
+          {/* <Route exact path="/" element={<Login/>}/> */}
+          <Route path="/" element={<Inventory/>}/>
         
        
              
