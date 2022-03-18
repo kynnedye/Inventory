@@ -89,6 +89,21 @@ body{
     font-weight: bold;
     color: transparent;
 }
+.danger{
+    border: none;
+    background: transparent;
+    position: relative;
+    border: 2px solid cornflowerblue;
+    border-radius: 25px;
+    font-size: 10px;
+    color: cornflowerblue;
+    top:5px;
+    
+}
+.name-btn{
+    position: absolute;
+    left:45px;
+}
 
 .count-container{
     display: flex;
@@ -97,16 +112,30 @@ body{
 }
 .input-control{
     display: flex;
-    width: 40%;
+    width: 20%;
+    min-width: 120px;
+    align-self: flex-end;
     
 }
 .btn-margin{
     margin-right: 0;
 }
 .form-btns{
+    border:none;
     border-radius: 25px;
-    text-align: center;
-    width: 45px;
-    padding: 0 .95em;
-    font-size: .75rem;
+    width: 40px;
+    background: cornflowerblue;
+   position: relative;
+   right:-8px;
+}
+.form-btns:hover{
+    background: rgb(60, 122, 238);
+    border:none;
+}
+.text{
+    width: 60%;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
 }

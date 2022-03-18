@@ -1,7 +1,10 @@
 import { Button, Accordion, Card, useAccordionButton, Form } from 'react-bootstrap';
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import InputCount from './InputCount';
 import { Context } from '../context/AppContext'
+import useComponentVisible from '../hooks/useComponentVisible';
+import InputCardBody from './InputCardBody';
+
 
 
 
@@ -16,9 +19,12 @@ export default function DropDown({item}) {
       button4:false
      
   })
-  const [quantityLow, setQuantityLow] = useState(false)
+  const { isComponentVisible } = useComponentVisible(true)
+
+
   
-  const {deleteListItem, setUpdatedCount, setUpdatedName, updatedName, setUsedAmount, updatedCount, usedAmount, wastedAmount, setWastedAmount  } = useContext(Context)
+  
+  const {deleteListItem,  setUpdatedName, updatedName, setUpdatedCount, setUsedAmount, updatedCount, usedAmount, wastedAmount, setWastedAmount } = useContext(Context)
     function CustomToggle({ children, eventKey }) {
         const decoratedOnClick = useAccordionButton(eventKey, () =>
           console.log('totally custom!'),
@@ -40,11 +46,10 @@ export default function DropDown({item}) {
           return ""
             
         } else if(hover){
-          return <Button  
-          variant="danger" 
-          size="sm" 
+          return <button
+          
           onClick={()=> deleteListItem(item.id)}
-          className="danger">X</Button>
+          className="danger">X</button>
         }
     }
 
@@ -71,7 +76,7 @@ export default function DropDown({item}) {
           <Card.Header className="toggle-container">
             <div className="btn-container">
             {closeIcon()}
-            {clicked.button4 !== true ? <Button variant="secondary" onClick={()=> setClicked(prev =>{
+            {clicked.button4 !== true ? <Button className="name-btn"variant="secondary" onClick={()=> setClicked(prev =>{
                   return {...prev, button4:true}
                 })}>{item.name}</Button> : 
                 <InputCount 
@@ -86,8 +91,8 @@ export default function DropDown({item}) {
         
             <CustomToggle eventKey="0">{actualTotal()}</CustomToggle>
           </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
+          <Accordion.Collapse   eventKey="0">
+          <Card.Body>
               <div className="count-container">
                 <p>Current Count:</p>
                 {clicked.button1 !== true ? <Button onClick={()=> setClicked(prev =>{
