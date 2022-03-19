@@ -114,7 +114,8 @@ body{
     display: flex;
     width: 20%;
     min-width: 120px;
-    align-self: flex-end;
+    position: relative;
+    left: 75px;
     
 }
 .btn-margin{
@@ -135,7 +136,14 @@ body{
 .text{
     width: 60%;
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
 	-webkit-appearance: none;
+}
+.text{
+    width: 50%;
+    max-width:200px;
+    position: absolute;
+    left: 10px;
 }

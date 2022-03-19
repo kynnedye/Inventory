@@ -24,7 +24,7 @@ export default function InputCount({inputName, button, setFunction, item, amount
       }, [isComponentVisible])
    
     return (
-            <div ref={ref}>
+            <div className="count-div" ref={ref}>
                     {isComponentVisible && <CountForm inputType={inputType} inputName ={inputName} item={item}  amount={amount} setFunction={setFunction} updateList={updateList} closeButton={closeButton}/>}
             </div>
         

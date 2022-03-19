@@ -3,11 +3,11 @@ import { Form, Button } from 'react-bootstrap'
 
 export default function CountForm({item, inputName, amount, updateList, setFunction, inputType, closeButton}) {
     return (
-        <Form   key={item.id} className="input-control">
+        <Form   key={item.id} className={`input-control ${inputType}`}>
         <Form.Control  onChange={(e)=> {
           setFunction(e.target.value)
           
-        }}className="count-input" className={inputType} type={inputType} name={inputName} value={amount}/>
+        }}className="count-input"  type={inputType} name={inputName} value={amount}/>
         <Button 
             className="btn-margin form-btns"
             variant="success"
